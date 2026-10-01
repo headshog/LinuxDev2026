@@ -1,10 +1,22 @@
 CC = cc
+PKG_CONFIG = pkg-config
+CPPFLAGS = $(shell $(PKG_CONFIG) --cflags ncursesw)
 CFLAGS = -std=c11 -O2 -Wall -Wextra -Wpedantic
-LDLIBS = -lncursesw
+LDLIBS = $(shell $(PKG_CONFIG) --libs ncursesw)
+
+PREFIX ?= /usr
+bindir ?= $(PREFIX)/bin
+DESTDIR ?=
+
+all: Show
 
 Show: Show.c
-	$(CC) $(CFLAGS) $< -o $@ $(LDLIBS)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $< -o $@ $(LDLIBS)
 
-.PHONY: clean
+install: Show
+	install -d "$(DESTDIR)$(bindir)"
+	install -m 755 Show "$(DESTDIR)$(bindir)/Show"
+
+.PHONY: all install clean
 clean:
 	rm -f Show
