@@ -1,3 +1,8 @@
 Lib/
 03_Packaging/README.md
 03_Packaging/Makefile
+05_Debugging/range
+05_Debugging/*.out
+05_Debugging/*.log
+05_Debugging/range-*.tar.gz
+05_Debugging/README.md
