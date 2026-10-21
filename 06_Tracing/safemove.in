@@ -1,0 +1,4 @@
+#!/bin/sh
+LD_PRELOAD="@library@${LD_PRELOAD:+:$LD_PRELOAD}"
+export LD_PRELOAD
+exec "@move@" "$@"

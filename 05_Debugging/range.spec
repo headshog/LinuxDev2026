@@ -26,5 +26,4 @@ make test
 make install DESTDIR="%buildroot" PREFIX="%_prefix" bindir="%_bindir"
 
 %files
-%doc readme.md
 %_bindir/range

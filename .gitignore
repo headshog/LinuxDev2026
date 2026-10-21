@@ -6,3 +6,8 @@ Lib/
 05_Debugging/*.log
 05_Debugging/range-*.tar.gz
 05_Debugging/README.md
+06_Tracing/move
+06_Tracing/libprotect.so
+06_Tracing/safemove
+06_Tracing/safemove-*.tar.gz
+06_Tracing/README.md

@@ -8,7 +8,7 @@ bindir ?= $(PREFIX)/bin
 DESTDIR ?=
 
 ARCHIVE = range-0.1.0.tar.gz
-DISTFILES = range.c Makefile readme.md range.spec multiples.gdb interval.gdb \
+DISTFILES = range.c Makefile range.spec multiples.gdb interval.gdb \
 	multiples.expected interval.expected
 TEST_OUTPUTS = multiples.log multiples.out interval.log interval.out
 
