@@ -1,0 +1,55 @@
+--- a/maze.c
++++ b/maze.c
+@@ -1,9 +1,9 @@
+ #include <ctype.h>
+ #include <errno.h>
++#include <limits.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+-#include <time.h>
+ 
+ static int generate_maze(int size, char passage, char wall)
+ {
+@@ -76,25 +76,32 @@
+     int size;
+     char passage, wall;
+ 
+-    if (argc != 3) {
+-        fprintf(stderr, "Usage: %s SYMBOLS SIZE\n", argv[0]);
++    if (argc != 4) {
++        fprintf(stderr, "Usage: %s SEED SYMBOLS SIZE\n", argv[0]);
+         return EXIT_FAILURE;
+     }
+     char *end;
+     errno = 0;
+-    long parsed = strtol(argv[2], &end, 10);
+-    if (errno || end == argv[2] || *end || parsed < 1 || parsed > 1000) {
++    unsigned long seed = strtoul(argv[1], &end, 10);
++    if (errno || end == argv[1] || *end || seed > UINT_MAX ||
++        strspn(argv[1], "0123456789") != strlen(argv[1])) {
++        fprintf(stderr, "SEED must be an unsigned decimal integer up to %u\n", UINT_MAX);
++        return EXIT_FAILURE;
++    }
++    errno = 0;
++    long parsed = strtol(argv[3], &end, 10);
++    if (errno || end == argv[3] || *end || parsed < 1 || parsed > 1000) {
+         fprintf(stderr, "SIZE must be an integer from 1 to 1000\n");
+         return EXIT_FAILURE;
+     }
+     size = (int)parsed;
+-    if (strlen(argv[1]) != 2 || argv[1][0] == argv[1][1] ||
+-        !isprint((unsigned char)argv[1][0]) || !isprint((unsigned char)argv[1][1])) {
++    if (strlen(argv[2]) != 2 || argv[2][0] == argv[2][1] ||
++        !isprint((unsigned char)argv[2][0]) || !isprint((unsigned char)argv[2][1])) {
+         fprintf(stderr, "SYMBOLS must be two distinct printable ASCII characters\n");
+         return EXIT_FAILURE;
+     }
+-    passage = argv[1][0];
+-    wall = argv[1][1];
+-    srand((unsigned int)time(NULL));
++    passage = argv[2][0];
++    wall = argv[2][1];
++    srand((unsigned int)seed);
+     return generate_maze(size, passage, wall);
+ }

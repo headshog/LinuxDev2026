@@ -1,0 +1,13 @@
+/maze
+/maze-size
+/maze-symbols
+/maze-seed
+/maze-size.c
+/maze-symbols.c
+/maze-seed.c
+/*.orig
+/*.rej
+/maze-generator-*.tar.gz
+/stage/
+/RPM/
+README.md
