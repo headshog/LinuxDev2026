@@ -1,0 +1,12 @@
+DOMAIN = $(PACKAGE)
+subdir = po
+top_builddir = ..
+XGETTEXT_OPTIONS = --keyword=_ --from-code=UTF-8 --add-comments=TRANSLATORS:
+COPYRIGHT_HOLDER = headshog
+PACKAGE_GNU = no
+MSGID_BUGS_ADDRESS = craaaaaachind@gmail.com
+EXTRA_LOCALE_CATEGORIES =
+USE_MSGCTXT = no
+MSGMERGE_OPTIONS = --previous
+MSGINIT_OPTIONS =
+DIST_DEPENDS_ON_UPDATE_PO = yes
